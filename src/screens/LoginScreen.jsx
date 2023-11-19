@@ -4,10 +4,10 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
+import { useCookies } from 'react-cookie';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -21,7 +21,6 @@ const LoginScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const { search } = useLocation();
-  console.log(search)
   const sp = new URLSearchParams(search);
   const redirect = sp.get('redirect') || '/';
 
@@ -35,7 +34,6 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
-      console.log(res)
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
