@@ -34,6 +34,7 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
+      document.cookie = 'jwt =' + res.token;
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
