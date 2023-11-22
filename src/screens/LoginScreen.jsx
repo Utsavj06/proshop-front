@@ -7,7 +7,6 @@ import FormContainer from '../components/FormContainer';
 import { useLoginMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
-import { useCookies } from 'react-cookie';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
