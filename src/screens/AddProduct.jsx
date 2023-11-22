@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useCreateProductMutation } from "../slices/addProductSlice";
 
 const AddProduct = () => {
   const nav = useNavigate();
@@ -14,6 +15,8 @@ const AddProduct = () => {
   const [stk, setStk] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+
+  const [ createProduct ] = useCreateProductMutation()
 
   const handleRegSub = async (e) => {
     e.preventDefault();
@@ -34,7 +37,6 @@ const AddProduct = () => {
     try {
       // Send a POST request using axios
       await axios.post(
-        // "http://www.localhost:8080/api/employee",
         "http://localhost:5000/api/addProduct",
         formData
       );
