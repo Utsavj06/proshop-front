@@ -11,7 +11,7 @@ const AddProduct = () => {
   const [desc, setDesc] = useState("");
   const [brnd, setBrnd] = useState("");
   const [catry, setCatgry] = useState("");
-  const [prce, setPrce] = useState("");
+  const [prce, setPrce] = useState(0);
   const [stk, setStk] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
@@ -76,7 +76,7 @@ const AddProduct = () => {
         setBrnd(evTarg.value);
         break;
       case "prce":
-        setPrce(evTarg.value);
+        setPrce(+evTarg.value);
         break;
       case "stk":
         setStk(evTarg.value);
