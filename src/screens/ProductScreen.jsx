@@ -29,7 +29,7 @@ const ProductScreen = () => {
       isError? (<Message variant='danger'>{isError?.data?.message || isError.error}</Message>) : (
       <Row>
         <Col md={5}>
-          <Image src={product.image} alt={product.name} fluid height={200} width={150} />
+          <Image src={product.image} alt={product.name} fluid />
         </Col>
         <Col md={4}>
           <ListGroup variant="flush">
