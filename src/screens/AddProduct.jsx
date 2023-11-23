@@ -21,6 +21,7 @@ const AddProduct = () => {
   const handleRegSub = async (e) => {
     e.preventDefault();
 
+    const getAdminUser = JSON.parse(localStorage.getItem('userInfo'));
     const formData = new FormData();
 
     // Append data to the FormData object
@@ -33,11 +34,12 @@ const AddProduct = () => {
     formData.append("stk", stk);
     formData.append("rating", rating);
     formData.append("review", review);
+    formData.append('userId', getAdminUser._id)
 
     try {
       // Send a POST request using axios
       await axios.post(
-        "https://proshop-back.onrender.com/api/addProduct",
+        "http://localhost:5000/api/addProduct",
         formData
       );
 
