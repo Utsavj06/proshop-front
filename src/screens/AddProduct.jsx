@@ -15,6 +15,7 @@ const AddProduct = () => {
   const [stk, setStk] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+  const [status, setSatus] = useState('')
 
   const [ createProduct ] = useCreateProductMutation()
 
@@ -38,11 +39,12 @@ const AddProduct = () => {
 
     try {
       // Send a POST request using axios
-      await axios.post(
-        "https://proshop-back.onrender.com/api/addProduct",
+      const res = await axios.post(
+        "http://localhost:5000/api/addProduct",
         formData
       );
 
+      alert(res.data)
       // Reset form values
       setPic("");
       setName("");

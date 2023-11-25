@@ -8,6 +8,7 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import Loader from '../components/Loader';
 import { useCreateOrderMutation } from '../slices/ordersApiSlice';
 import { clearCartItems } from '../slices/cartSlice';
+import axios from 'axios';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -27,17 +28,21 @@ const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
   const placeOrderHandler = async () => {
     try {
-      const res = await createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
-      }).unwrap();
-      dispatch(clearCartItems());
-      navigate(`/order/${res._id}`);
+      await axios.post(
+        "http://localhost:5000/api/orders/order-payment",
+        cart
+      );
+      // const res = await createOrder({
+      //   orderItems: cart.cartItems,
+      //   shippingAddress: cart.shippingAddress,
+      //   paymentMethod: cart.paymentMethod,
+      //   itemsPrice: cart.itemsPrice,
+      //   shippingPrice: cart.shippingPrice,
+      //   taxPrice: cart.taxPrice,
+      //   totalPrice: cart.totalPrice,
+      // }).unwrap();
+      // dispatch(clearCartItems());
+      // navigate(`/order/${res._id}`);
     } catch (err) {
       toast.error(err);
     }
