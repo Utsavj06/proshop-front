@@ -27,24 +27,17 @@ const PlaceOrderScreen = () => {
 
   const dispatch = useDispatch();
   const placeOrderHandler = async () => {
+
     try {
-      await axios.post(
-        "http://localhost:5000/api/orders/order-payment",
-        cart
-      );
-      // const res = await createOrder({
-      //   orderItems: cart.cartItems,
-      //   shippingAddress: cart.shippingAddress,
-      //   paymentMethod: cart.paymentMethod,
-      //   itemsPrice: cart.itemsPrice,
-      //   shippingPrice: cart.shippingPrice,
-      //   taxPrice: cart.taxPrice,
-      //   totalPrice: cart.totalPrice,
-      // }).unwrap();
-      // dispatch(clearCartItems());
-      // navigate(`/order/${res._id}`);
-    } catch (err) {
-      toast.error(err);
+      const response = await axios.post("http://localhost:5000/api/orders/order-payment", cart);
+    
+      // Assuming the URL is present in the `data` property of the response
+      const reslt = response.data;
+    
+      console.log(reslt);
+      window.location = reslt.url;
+    } catch (error) {
+      console.error(error);
     }
   };
 
