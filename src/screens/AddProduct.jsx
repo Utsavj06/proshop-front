@@ -40,7 +40,7 @@ const AddProduct = () => {
     try {
       // Send a POST request using axios
       const res = await axios.post(
-        "http://localhost:5000/api/addProduct",
+        "https://proshop-back.onrender.com/api/addProduct",
         formData
       );
 
