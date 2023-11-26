@@ -23,7 +23,7 @@ const OrderScreen = () => {
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  // const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
   const [deliverOrder, { isLoading: loadingDeliver }] =
     useDeliverOrderMutation();
@@ -32,11 +32,11 @@ const OrderScreen = () => {
 
 //   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-  const {
-    data: paypal,
-    isLoading: loadingPayPal,
-    error: errorPayPal,
-  } = useGetPaypalClientIdQuery();
+  // const {
+  //   data: paypal,
+  //   isLoading: loadingPayPal,
+  //   error: errorPayPal,
+  // } = useGetPaypalClientIdQuery();
 
 //   useEffect(() => {
 //     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
@@ -61,7 +61,7 @@ const OrderScreen = () => {
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
-        await payOrder({ orderId, details });
+        // await payOrder({ orderId, details });
         refetch();
         toast.success('Order is paid');
       } catch (err) {
@@ -213,7 +213,7 @@ const OrderScreen = () => {
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
-                  {loadingPay && <Loader />}
+                  {/* {loadingPay && <Loader />} */}
 
                   {/* {isPending ? (
                     <Loader />

@@ -12,7 +12,6 @@ import store from "./store";
 import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { CookiesProvider } from "react-cookie";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
@@ -25,6 +24,7 @@ import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import AddProduct from "./screens/AddProduct";
+import Profile from "./screens/Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +33,7 @@ const router = createBrowserRouter(
       <Route path="/product/:id" element={<ProductScreen />} />
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/admin/addProduct" element={<AddProduct />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="" element={<PrivateRoute />}>
@@ -54,5 +55,3 @@ root.render(
     </CookiesProvider>
   </React.StrictMode>
 );
-
-reportWebVitals();
