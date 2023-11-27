@@ -9,9 +9,8 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         url: ORDERS_URL,
         method: 'POST',
         body: order,
-        header : {
-          Authori
-      }),
+headers: {
+  Authorization: `Bearer ${Cookies.get('jwt') || ''}`, // Include the Bearer token
     }),
     getOrderDetails: builder.query({
       query: (id) => ({
