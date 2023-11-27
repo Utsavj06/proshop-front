@@ -23,7 +23,7 @@ const CartScreen = () => {
   // NOTE: no need for an async function here as we are not awaiting the
   // resolution of a Promise
   const addToCartHandler = (product, qty) => {
-    dispatch(addToCart({ ...product, qty }));
+    dispatch(addToCart({ ...product, qty }))
   };
 
   const removeFromCartHandler = (id) => {
