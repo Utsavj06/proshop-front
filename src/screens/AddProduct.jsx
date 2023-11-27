@@ -11,7 +11,7 @@ const AddProduct = () => {
   const [desc, setDesc] = useState("");
   const [brnd, setBrnd] = useState("");
   const [catry, setCatgry] = useState("");
-  const [prce, setPrce] = useState(0);
+  const [prce, setPrce] = useState('');
   const [stk, setStk] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
