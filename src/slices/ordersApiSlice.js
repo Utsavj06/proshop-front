@@ -1,5 +1,6 @@
 import { apiSlice } from './apiSlice';
 import { ORDERS_URL, PAYPAL_URL } from '../constants';
+import Cookies from 'js-cookie';
 
 export const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,6 +9,8 @@ export const orderApiSlice = apiSlice.injectEndpoints({
         url: ORDERS_URL,
         method: 'POST',
         body: order,
+        header : {
+          Authori
       }),
     }),
     getOrderDetails: builder.query({
