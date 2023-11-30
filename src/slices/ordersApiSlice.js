@@ -17,6 +17,9 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     getOrderDetails: builder.query({
       query: (id) => ({
         url: `${ORDERS_URL}/${id}`,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt') || ''}`
+        },
       }),
       keepUnusedDataFor: 5,
     }),
@@ -36,6 +39,9 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     getMyOrders: builder.query({
       query: () => ({
         url: `${ORDERS_URL}/mine`,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt') || ''}`
+        },
       }),
       keepUnusedDataFor: 5,
     }),

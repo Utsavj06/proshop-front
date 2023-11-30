@@ -1,5 +1,6 @@
 import { apiSlice } from './apiSlice';
 import { USERS_URL } from '../constants';
+import Cookies from 'js-cookie';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -28,6 +29,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/profile`,
         method: 'PUT',
         body: data,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt') || ''}`
+        },
       }),
     }),
     getUsers: builder.query({

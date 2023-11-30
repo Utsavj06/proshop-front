@@ -98,8 +98,8 @@ const AddProduct = () => {
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center flex-column"
-      style={{ height: "90vh" }}
+      // className="d-flex justify-content-center align-items-center flex-column"
+      style={{ height: "60vh", marginTop: '50px' }}
     >
       <Card>
         <Row className="d-flex justify-content-around">
@@ -107,96 +107,81 @@ const AddProduct = () => {
             lg={12}
             md={12}
             sm={12}
-            className="d-flex justify-content-around mt-3"
           >
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Card>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Name of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='name' value={name} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6} >
+                <input type="text" id='name' value={name} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Image of Product :
               </Col>
-              <Col lg={6}>
+              <Col lg={6} sm={6} md={6}>
                 <input type="file" id='photo' className="w-100" onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Description of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='desc' value={desc} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='desc' value={desc} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Brand of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='brnd' value={brnd} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='brnd' value={brnd} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Category of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='ctgry' value={catry} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='ctgry' value={catry} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Price of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='prce' value={prce} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='prce' value={prce} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Number of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='stk' value={stk} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='stk' value={stk} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Rating of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='rtng' value={rating} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='rtng' value={rating} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
-          </Col>
-          <Col lg={12} className="d-flex justify-content-around mt-3 mb-3">
-            <Row>
-              <Col sm={4} md={4} lg={6}>
+            <Row className="p-3">
+              <Col sm={4} md={4} lg={4}>
                 Review of Product :
               </Col>
-              <Col lg={6}>
-                <input type="text" id='rvw' value={review} className="w-100" onChange={(e)=>handleForm(e)} />
+              <Col lg={6} sm={6} md={6}>
+                <input type="text" id='rvw' value={review} onChange={(e)=>handleForm(e)} />
               </Col>
             </Row>
+            </Card>
           </Col>
         </Row>
       </Card>
