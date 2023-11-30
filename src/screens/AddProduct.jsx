@@ -185,7 +185,7 @@ const AddProduct = () => {
           </Col>
         </Row>
       </Card>
-      <Button className="mt-4" onClick={handleRegSub}>Submit</Button>
+      <Button className="my-4" onClick={handleRegSub}>Submit</Button>
     </div>
   );
 };
