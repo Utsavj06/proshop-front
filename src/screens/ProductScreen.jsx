@@ -11,7 +11,7 @@ import { addToCart } from "../slices/cartSlice";
 const ProductScreen = () => {
   const { id: productId } = useParams();
   const {data: product, isLoading, isError} = useGetProductDetailsQuery(productId)
-  const [qty, setQty] = useState()
+  const [qty, setQty] = useState(1)
   const dispatch = useDispatch();
   const navigate = useNavigate()
 

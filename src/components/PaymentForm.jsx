@@ -36,16 +36,16 @@ const Payment = ({ history }) => {
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   const paymentData = {
-    // amount: Math.round(orderInfo.totalPrice * 100)
+    amount: cart.itemsPrice*100
   };
 
   const submitHandler = async (e) => {
       e.preventDefault();
-  //     try {
 
-          const res = await axios.post('http://localhost:5000/api/process-payment', {amount:cart.itemsPrice*100})
+          // const res = await axios.post('http://localhost:5000/api/process-payment', paymentData)
+          const res = await axios.post('https://proshop-back.onrender.com/api/process-payment', paymentData)
           // console.log(res)
-
+          
           const clientSecret = res.data.client_secret;
 
   //         console.log(clientSecret);
@@ -84,29 +84,14 @@ const Payment = ({ history }) => {
                 }).unwrap();
                 dispatch(clearCartItems());
                 navigate(`/order/${placeOrder._id}`);
-
-  //                 order.paymentInfo = {
-  //                     id: result.paymentIntent.id,
-  //                     status: result.paymentIntent.status
-  //                 }
-
-  //                 // dispatch(createOrder(order))
               } else {
                   alert('There is some issue while payment processing')
               }
           }
-
-  //     } catch (error) {
-  //         document.querySelector('#pay_btn').disabled = false;
-  //         alert.error(error.response.data.message)
-  //     }
   }
 
   return (
     <Fragment>
-      {/* <MetaData title={'Payment'} />
-
-            <CheckoutSteps shipping confirmOrder payment /> */}
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form className="shadow-lg" onSubmit={submitHandler}>
