@@ -1,5 +1,5 @@
 export const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2);
+    return (Math.round(num * 100) / 100);
   };
   
   // NOTE: the code below has been changed from the course code to fix an issue

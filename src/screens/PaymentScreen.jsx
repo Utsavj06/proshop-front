@@ -17,14 +17,14 @@ const PaymentScreen = () => {
     }
   }, [navigate, shippingAddress]);
 
-  const [paymentMethod, setPaymentMethod] = useState("Cod");
+  const [paymentMethod, setPaymentMethod] = useState("Credit Card");
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    navigate("/placeorder");
+    paymentMethod === "Cash On Delivery" ? navigate("/placeorder") : navigate('/pay-card')
   };
 
   return (
@@ -51,8 +51,8 @@ const PaymentScreen = () => {
               label="Cash on Delivery"
               id="Cod"
               name="paymentMethod"
-              value="Cod"
-              checked={paymentMethod === "Cod"}
+              value="Cash On Delivery"
+              checked={paymentMethod === "Cash On Delivery"}
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
           </Col>
