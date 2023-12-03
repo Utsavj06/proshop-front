@@ -92,9 +92,9 @@ const Payment = ({ history }) => {
 
   return (
     <Fragment>
-      <div className="row wrapper">
-        <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler}>
+      <div className="row wrapper justify-content-center">
+        <div className="col-10 col-lg-5 p-5">
+          <form className="shadow-lg p-4" onSubmit={submitHandler}>
             <h1 className="mb-4">Card Info</h1>
             <div className="form-group">
               <label htmlFor="card_num_field">Card Number</label>
@@ -126,7 +126,7 @@ const Payment = ({ history }) => {
               />
             </div>
 
-            <button id="pay_btn" type="submit" className="btn btn-block py-3">
+            <button id="pay_btn" type="submit" className="btn btn-block px-5 py-2 bg-secondary text-white mt-3 text-align-center">
               Pay {/* {` - ${orderInfo && orderInfo.totalPrice}`} */}
             </button>
           </form>
