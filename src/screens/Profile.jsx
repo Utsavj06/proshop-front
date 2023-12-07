@@ -3,7 +3,7 @@ import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
-
+import { MdDoneAll } from "react-icons/md";
 import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -137,7 +137,7 @@ const ProfileScreen = () => {
                   </td> */}
                   <td>
                     {order.isPaid ? (
-                      order.paidAt
+                      <MdDoneAll style={{ color: 'green' }} />
                     ) : (
                       <FaTimes style={{ color: 'red' }} />
                     )}
