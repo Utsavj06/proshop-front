@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header style={{position: 'sticky', top: '0', zIndex: 10}}>
       <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
