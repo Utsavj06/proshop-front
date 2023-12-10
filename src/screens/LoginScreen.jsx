@@ -27,7 +27,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     const fun = async () => {
-      const resUrl = await axios.get("http://localhost:5000/api/getGoogleAuth");
+      const resUrl = await axios.get("https://proshop-back.onrender.com/api/getGoogleAuth");
       setGoogleUrl(resUrl.data.url);
     };
     fun();
