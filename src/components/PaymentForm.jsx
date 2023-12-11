@@ -93,7 +93,7 @@ const Payment = ({ history }) => {
   return (
     <Fragment>
       <div className="row wrapper justify-content-center">
-        <div className="col-10 col-lg-5 p-5">
+        <div className="col-10 col-lg-5 p-2">
           <form className="shadow-lg p-4" onSubmit={submitHandler}>
             <h1 className="mb-4">Card Info</h1>
             <div className="form-group">
