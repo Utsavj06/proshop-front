@@ -196,19 +196,19 @@ const OrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
+                  <Col>₹{order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>₹{order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
+                  <Col>₹{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
@@ -226,16 +226,6 @@ const OrderScreen = () => {
                       >
                         Test Pay Order
                       </Button> */}
-
-                      {/* <div>
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
-                    </div>
-                  )} */}
                 </ListGroup.Item>
               )}
 
