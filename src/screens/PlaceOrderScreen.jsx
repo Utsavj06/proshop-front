@@ -8,7 +8,6 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import Loader from "../components/Loader";
 import { useCreateOrderMutation } from "../slices/ordersApiSlice";
 import { clearCartItems } from "../slices/cartSlice";
-import axios from "axios";
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -42,18 +41,6 @@ const PlaceOrderScreen = () => {
     } catch (err) {
       toast.error(err);
     }
-
-    // try {
-    //   const response = await axios.post("http://localhost:5000/api/orders/order-payment", cart);
-
-    //   // Assuming the URL is present in the `data` property of the response
-    //   const reslt = response.data;
-
-    //   console.log(reslt);
-    //   window.location = reslt.url;
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
 
   return (
