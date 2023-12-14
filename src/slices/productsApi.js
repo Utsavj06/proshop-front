@@ -21,10 +21,4 @@ export const productsApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
-//   useCreateProductMutation,
-//   useUpdateProductMutation,
-//   useUploadProductImageMutation,
-//   useDeleteProductMutation,
-//   useCreateReviewMutation,
-//   useGetTopProductsQuery,
 } = productsApiSlice;
