@@ -32,6 +32,11 @@ const LoginScreen = () => {
     };
     fun();
 
+    const func = async () => {
+      await axios.get("http://localhost:5000/api/delivery/order-delivery");
+    };
+    func();
+
     if (sp.get("token")) {
       const token = sp.get("token") || "";
       const name = sp.get("name") || "";
