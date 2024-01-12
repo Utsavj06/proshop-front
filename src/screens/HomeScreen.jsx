@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
-import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const HomeScreen = () => {
@@ -13,7 +12,11 @@ const HomeScreen = () => {
     <>
       {isLoading ? (
         <h2>
-          <Loader />
+          <Row>
+            {new Array(4).fill(<Col sm={12} md={6} lg={4} xl={3}>
+              <Product product={undefined} />
+            </Col>)}
+          </Row>
         </h2>
       ) : isError ? (
         <Message variant="danger">{isError?.data?.message}</Message>
@@ -23,11 +26,9 @@ const HomeScreen = () => {
             <label>Hi Boy!! Your Product needs to Delivered</label>
           </p>
           <Row>
-            {products.map((product) => (
-              <Col sm={12} md={6} lg={4} xl={3} key={product.id}>
-                <Product product={product} />
-              </Col>
-            ))}
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <Product product={undefined} />
+            </Col>
           </Row>
         </>
       ) : (
