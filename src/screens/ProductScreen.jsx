@@ -1,30 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  Button,
-  Card,
-  Col,
-  Image,
-  ListGroup,
-  Row,
-  Form,
-} from "react-bootstrap";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { Button, Card, Col, Image, ListGroup, Row, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApi";
-import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useGetProductDetailsQuery(productId);
+  const { data: product, isLoading, isError } = useGetProductDetailsQuery(productId);
   const [qty, setQty] = useState(1);
   const [isDelivering] = useState(false);
   const [markDel, setMarkDel] = useState(false);
@@ -47,12 +32,34 @@ const ProductScreen = () => {
       </Link>
       {isLoading ? (
         <h3>
-          <Loader />
+          <Row>
+            <Col md={3}>
+              <div style={{ height: "250px", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+            </Col>
+            <Col md={4}>
+              <div style={{ height: "50px", marginBottom: "10px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+              <hr />
+              <div style={{ height: "40px", marginBottom: "10px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+              <hr />
+              <div style={{ height: "20px", marginBottom: "10px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+              <hr />
+              <div style={{ height: "20px", marginBottom: "10px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+            </Col>
+            <Col md={3}>
+              <Card>
+                <div style={{ height: "40px", margin: "5px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+                <hr style={{ margin: "5px" }} />
+                <div style={{ height: "30px", margin: "5px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+                <hr style={{ margin: "5px" }} />
+                <div style={{ height: "60px", margin: "5px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+                <hr style={{ margin: "5px" }} />
+                <div style={{ height: "60px", margin: "5px", width: "70%", backgroundImage: "linear-gradient(to right, #cbc0c0, white)" }} />
+              </Card>
+            </Col>
+          </Row>
         </h3>
       ) : isError ? (
-        <Message variant="danger">
-          {isError?.data?.message || isError.error}
-        </Message>
+        <Message variant="danger">{isError?.data?.message || isError.error}</Message>
       ) : (
         <Row>
           <Col md={5} className="w-25 h-50">
@@ -88,15 +95,10 @@ const ProductScreen = () => {
                     <h3>{product.name}</h3>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Rating
-                      value={product.rating}
-                      text={`${product.numReviews} reviews`}
-                    />
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                   </ListGroup.Item>
                   <ListGroup.Item>Price: ₹{product.price}</ListGroup.Item>
-                  <ListGroup.Item>
-                    Description: {product.description}
-                  </ListGroup.Item>
+                  <ListGroup.Item>Description: {product.description}</ListGroup.Item>
                 </ListGroup>
               </Col>
               <Col md={3}>
@@ -116,9 +118,7 @@ const ProductScreen = () => {
                       <Row>
                         <Col>Status:</Col>
                         <Col>
-                          <strong>
-                            {product.countInStock > 0 ? "In Stock" : "Out of"}
-                          </strong>
+                          <strong>{product.countInStock > 0 ? "In Stock" : "Out of"}</strong>
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -127,32 +127,21 @@ const ProductScreen = () => {
                         <Row>
                           <Col>Qty</Col>
                           <Col>
-                            <Form.Control
-                              as="select"
-                              value={qty}
-                              onChange={(e) => setQty(Number(e.target.value))}
-                            >
-                              {[...Array(product.countInStock).keys()].map(
-                                (x) => {
-                                  return (
-                                    <option key={x + 1} value={x + 1}>
-                                      {x + 1}
-                                    </option>
-                                  );
-                                }
-                              )}
+                            <Form.Control as="select" value={qty} onChange={(e) => setQty(Number(e.target.value))}>
+                              {[...Array(product.countInStock).keys()].map((x) => {
+                                return (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                );
+                              })}
                             </Form.Control>
                           </Col>
                         </Row>
                       </ListGroup.Item>
                     )}
                     <ListGroup.Item>
-                      <Button
-                        className="btn-black"
-                        type="button"
-                        disable5d={product.countInStock === 0}
-                        onClick={() => addToCartHandler()}
-                      >
+                      <Button className="btn-black" type="button" disable5d={product.countInStock === 0} onClick={() => addToCartHandler()}>
                         Add To Cart
                       </Button>
                     </ListGroup.Item>
