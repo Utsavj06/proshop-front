@@ -13,6 +13,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [getGoogleUrl, setGoogleUrl] = useState("");
+  const [youAre, setYouAre] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const LoginScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password }).unwrap();
+      const res = await login({ email, password, youAre }).unwrap();
       document.cookie = "jwt =" + res.token;
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
@@ -88,6 +89,8 @@ const LoginScreen = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
+        <input type="checkbox" value={youAre} onClick={()=>setYouAre(!youAre)} />&nbsp;&nbsp;&nbsp;<label>delivery boy?</label>
+        <br/>
         <Button disabled={isLoading} type="submit" variant="primary">
           Sign In
         </Button>

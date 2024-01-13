@@ -7,7 +7,13 @@ import Message from "../components/Message";
 const HomeScreen = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
   const [isDelivering] = useState(false);
+  let userInfo = null;
 
+  if(localStorage.getItem('userInfo')){
+    userInfo = localStorage.getItem('userInfo')
+  }
+
+  console.log(userInfo)
   return (
     <>
       {isLoading ? (
