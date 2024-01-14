@@ -16,7 +16,7 @@ const useFetchProducts = (isDeliveringAgent) => {
       try {
         if (isDeliveringAgent) {
           setLoading(true);
-          const allOrders = await axios.get("http://localhost:5000/api/delivery/order-delivery");
+          const allOrders = await axios.get("https://proshop-back.onrender.com/api/delivery/order-delivery");
           console.log(allOrders.data);
           setOrders(allOrders.data.Orders);
           setLoading(false);
