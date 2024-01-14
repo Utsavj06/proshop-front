@@ -13,7 +13,7 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [getGoogleUrl, setGoogleUrl] = useState("");
-  const [youAre, setYouAre] = useState(false)
+  const [isDeliveryingAgent, setIsDeliveryingAgent] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,11 +32,6 @@ const LoginScreen = () => {
       setGoogleUrl(resUrl.data.url);
     };
     fun();
-
-    const func = async () => {
-      await axios.get("http://localhost:5000/api/delivery/order-delivery");
-    };
-    func();
 
     if (sp.get("token")) {
       const token = sp.get("token") || "";
@@ -57,7 +52,7 @@ const LoginScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password, youAre }).unwrap();
+      const res = await login({ email, password, isDeliveryingAgent }).unwrap();
       document.cookie = "jwt =" + res.token;
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
@@ -89,14 +84,15 @@ const LoginScreen = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <input type="checkbox" value={youAre} onClick={()=>setYouAre(!youAre)} />&nbsp;&nbsp;&nbsp;<label>delivery boy?</label>
+        <input type="checkbox" value={isDeliveryingAgent} onClick={()=>setIsDeliveryingAgent(!isDeliveryingAgent)} />
+          &nbsp;&nbsp;&nbsp;<label>Deliverying Agent?</label>
         <br/>
         <Button disabled={isLoading} type="submit" variant="primary">
           Sign In
         </Button>
         &nbsp;&nbsp;
         <Button
-          disabled={!getGoogleUrl}
+          disabled={isDeliveryingAgent==true  || !getGoogleUrl}
           onClick={() => (window.location.href = getGoogleUrl)}
           variant="primary"
         >
