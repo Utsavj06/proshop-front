@@ -23,6 +23,12 @@ const ProfileScreen = () => {
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] = useProfileMutation();
 
+  let isDeliveringAgent = null;
+
+  if (localStorage.getItem("userInfo")) {
+    isDeliveringAgent = JSON.parse(localStorage.getItem("userInfo")).deliveryAgent;
+  }
+
   useEffect(() => {
     setName(userInfo.name);
     setEmail(userInfo.email || userInfo.urlEmail);
@@ -74,34 +80,9 @@ const ProfileScreen = () => {
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
-
-          {/* <Form.Group className='my-2' controlId='password'>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Enter password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group className='my-2' controlId='confirmPassword'>
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type='password'
-              placeholder='Confirm password'
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Button type='submit' variant='primary'>
-            Update
-          </Button>
-          {loadingUpdateProfile && <Loader />} */}
         </Form>
       </Col>
-      <Col md={9}>
+      {!isDeliveringAgent && <Col md={9}>
         <h2>My Orders</h2>
         {isLoading ? (
           <Loader />
@@ -161,7 +142,7 @@ const ProfileScreen = () => {
             </tbody>
           </Table>
         )}
-      </Col>
+      </Col> }
     </Row>
   );
 };
