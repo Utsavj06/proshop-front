@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 import { MdDoneAll } from "react-icons/md";
-import { toast } from 'react-toastify';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { useProfileMutation } from '../slices/usersApiSlice';
 import { useGetMyOrdersQuery } from '../slices/ordersApiSlice';
-import { setCredentials } from '../slices/authSlice';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const { userInfo } = useSelector((state) => state.auth);
 
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
-
-  const [updateProfile, { isLoading: loadingUpdateProfile }] = useProfileMutation();
 
   let isDeliveringAgent = null;
 
@@ -34,32 +27,11 @@ const ProfileScreen = () => {
     setEmail(userInfo.email || userInfo.urlEmail);
   }, [userInfo.email, userInfo.name, userInfo.urlEmail]);
 
-  const dispatch = useDispatch();
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-    } else {
-      try {
-        const res = await updateProfile({
-          _id: userInfo._id,
-          name,
-          email,
-          password,
-        }).unwrap();
-        dispatch(setCredentials({ ...res }));
-        toast.success('Profile updated successfully');
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
-    }
-  };
-
   return (
     <Row style={{margin: !isDeliveringAgent? '0px': '20vh'}}>
       <Col md={!isDeliveringAgent ? 3 : 12}>
         <h2>User Profile</h2>
-        <Form onSubmit={submitHandler}>
+        <Form>
           <Form.Group className='my-2' controlId='name'>
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -105,16 +77,8 @@ const ProfileScreen = () => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  {/* <td>{order.createdAt.substring(0, 10)}</td> */}
                   <td>{order.createdAt}</td>
                   <td>{order.totalPrice}</td>
-                  {/* <td>
-                    {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
-                    ) : (
-                      <FaTimes style={{ color: 'red' }} />
-                    )}
-                  </td> */}
                   <td>
                     {order.isPaid ? (
                       <MdDoneAll style={{ color: 'green' }} />
@@ -124,7 +88,7 @@ const ProfileScreen = () => {
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      <MdDoneAll style={{ color: 'green' }} />
                     ) : (
                       <FaTimes style={{ color: 'red' }} />
                     )}
