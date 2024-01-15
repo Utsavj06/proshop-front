@@ -56,10 +56,9 @@ const ProfileScreen = () => {
   };
 
   return (
-    <Row>
-      <Col md={3}>
+    <Row style={{margin: !isDeliveringAgent? '0px': '20vh'}}>
+      <Col md={!isDeliveringAgent ? 3 : 12}>
         <h2>User Profile</h2>
-
         <Form onSubmit={submitHandler}>
           <Form.Group className='my-2' controlId='name'>
             <Form.Label>Name</Form.Label>
