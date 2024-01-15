@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Order = ({ product }) => {
@@ -23,21 +23,17 @@ const Order = ({ product }) => {
 
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/product/${product._id}`}>
+      <Link to={`/order/${product._id}`}>
         <img src={product.orderItems[0].image} style={{ height: "200px", width: "100%" }} alt={product.name} />
       </Link>
       <Card.Body>
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as="div" className="product-title">
-            <strong>{product.name}</strong>
-          </Card.Title>
-        </Link>
         <Card.Text as="div">
           <p>{`is Delivered? : ${product.isDelivered}`}</p>
           <p>{`is Paid? : ${product.isPaid}`}</p>
         </Card.Text>
         <Card.Text as="p"><b>{`Total Price: ₹ ${product.totalPrice}`}</b></Card.Text>
       </Card.Body>
+      <Link to={`/order/${product._id}`}><Button style={{width:'100%'}}>Proceed</Button></Link>
     </Card>
   );
 }
