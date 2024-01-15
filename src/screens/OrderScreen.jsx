@@ -59,8 +59,8 @@ const OrderScreen = () => {
                 {`${order.shippingAddress.address}, ${order.shippingAddress.city},
                 ${order.shippingAddress.postalCode}, ${order.shippingAddress.country}`}
               </p>
-              {order.isDelivered ? <Message variant="success">Delivered on {order.deliveredAt}</Message> : <Message variant="danger">Not Delivered</Message>}
-              {isDeliveringAgent ? (
+              {order.isDelivered ? <Message variant="success">Delivered</Message> : <Message variant="danger">Not Delivered</Message>}
+              {isDeliveringAgent && !order.isDelivered ? (
                 <>
                   <span>isDelivered?</span> &nbsp;
                   <Button onClick={()=>handleDelivery()}>Yes</Button>
