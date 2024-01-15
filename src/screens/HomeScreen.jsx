@@ -4,6 +4,8 @@ import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
 import Message from "../components/Message";
 import axios from "axios";
+import { BASE_URL } from "../constants";
+import Order from "../components/Order";
 
 const useFetchProducts = (isDeliveringAgent) => {
   const { data, isLoading, isError } = useGetProductsQuery();
@@ -16,8 +18,7 @@ const useFetchProducts = (isDeliveringAgent) => {
       try {
         if (isDeliveringAgent) {
           setLoading(true);
-          const allOrders = await axios.get("https://proshop-back.onrender.com/api/delivery/order-delivery");
-          console.log(allOrders.data);
+          const allOrders = await axios.get(`${BASE_URL}api/delivery/order-delivery`);
           setOrders(allOrders.data.Orders);
           setLoading(false);
         }
@@ -28,8 +29,6 @@ const useFetchProducts = (isDeliveringAgent) => {
 
     fetchData();
   }, [isDeliveringAgent]);
-
-  console.log(orders);
 
   return {
     products: isDeliveringAgent ? orders : data,
@@ -64,12 +63,12 @@ const HomeScreen = () => {
       ) : isDeliveringAgent ? (
         <>
           <p className="h3 lh-sm">
-            <label>Hi Boy!! Your Product needs to be Delivered</label>
+            <label>Hey Agent!! Your Product needs to be Delivered</label>
           </p>
           <Row>
             {products.map((product) => (
               <Col sm={12} md={6} lg={4} xl={3} key={product.id}>
-                <Product product={product} />
+                <Order product={product} />
               </Col>
             ))}
           </Row>
