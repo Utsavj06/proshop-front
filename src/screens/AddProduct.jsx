@@ -3,6 +3,7 @@ import { Row, Col, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useCreateProductMutation } from "../slices/addProductSlice";
+import { BASE_URL } from "../constants";
 
 const AddProduct = () => {
   const nav = useNavigate();
@@ -15,7 +16,6 @@ const AddProduct = () => {
   const [stk, setStk] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
-  const [status, setSatus] = useState('')
 
   const [ createProduct ] = useCreateProductMutation()
 
@@ -39,10 +39,7 @@ const AddProduct = () => {
 
     try {
       // Send a POST request using axios
-      const res = await axios.post(
-        "https://proshop-back.onrender.com/api/addProduct",
-        formData
-      );
+      const res = await axios.post(`${BASE_URL}/api/addProduct`,formData);
 
       alert(res.data)
       // Reset form values
