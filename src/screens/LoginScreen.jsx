@@ -8,6 +8,7 @@ import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BASE_URL } from "../constants";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     const fun = async () => {
-      const resUrl = await axios.get("https://proshop-back.onrender.com/api/getGoogleAuth");
+      const resUrl = await axios.get(`${BASE_URL}api/getGoogleAuth`);
       setGoogleUrl(resUrl.data.url);
     };
     fun();
@@ -85,7 +86,7 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
         <input type="checkbox" value={isDeliveryingAgent} onClick={()=>setIsDeliveryingAgent(!isDeliveryingAgent)} />
-          &nbsp;&nbsp;&nbsp;<label>Deliverying Agent?</label>
+          &nbsp;&nbsp;&nbsp;<label>Delivering Agent?</label>
         <br/>
         <Button disabled={isLoading} type="submit" variant="primary">
           Sign In
