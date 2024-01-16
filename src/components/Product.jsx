@@ -24,7 +24,7 @@ const Product = ({ product, isProduct }) => {
 
   return (
     <Card className="my-3 p-3 rounded">
-      <Link to={`/order/${product._id}`}>
+      <Link to={isProduct ? `/product/${product._id}` : `/order/${product._id}`}>
         <img src={!isProduct ? product.orderItems[0].image : product.image} style={{ height: "200px", width: "100%" }} alt={product.name} />
       </Link>
       <Card.Body>
@@ -47,9 +47,9 @@ const Product = ({ product, isProduct }) => {
         <Card.Text as={!isProduct ? "p" : "div"}>{!isProduct ? <b>{`Total Price: ₹ ${product.totalPrice}`}</b> : <Rating value={product.rating} text={`${product.numReviews} reviews`} />}</Card.Text>
         {isProduct && <Card.Text as="h3">₹ {product.price}</Card.Text>}
       </Card.Body>
-      <Link to={`/order/${product._id}`}>
+      {!isProduct && <Link to={`/order/${product._id}`}>
         <Button style={{ width: "100%" }}>Proceed</Button>
-      </Link>
+      </Link>}
     </Card>
   );
 };
