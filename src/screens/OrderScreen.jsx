@@ -1,11 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { useDeliverOrderMutation, useGetOrderDetailsQuery } from "../slices/ordersApiSlice";
-import axios from "axios";
-import { BASE_URL } from "../constants";
+import { useGetOrderDetailsQuery } from "../slices/ordersApiSlice";
+import { useChangeDeliveryStatusMutation } from "../slices/deliveryApiSlice";
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -16,19 +14,11 @@ const OrderScreen = () => {
   }
 
   const { data: order, refetch, isLoading, error } = useGetOrderDetailsQuery(orderId);
-
-  const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
-
-  const { userInfo } = useSelector((state) => state.auth);
-
-  const deliverHandler = async () => {
-    await deliverOrder(orderId);
-    refetch();
-  };
+  const [updateStatus] = useChangeDeliveryStatusMutation(orderId);
 
   const handleDelivery = async() => {
     try {
-      await axios.post(`${BASE_URL}api/delivery/success-delivery`, {orderId});
+      await updateStatus({orderId})
       setInterval(()=>{
         window.location.reload()
       },2000)
@@ -135,16 +125,6 @@ const OrderScreen = () => {
                   <Col>₹{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-
-              {loadingDeliver && <Loader />}
-
-              {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-                <ListGroup.Item>
-                  <Button type="button" className="btn btn-block" onClick={deliverHandler}>
-                    Mark As Delivered
-                  </Button>
-                </ListGroup.Item>
-              )}
             </ListGroup>
           </Card>
         </Col>
