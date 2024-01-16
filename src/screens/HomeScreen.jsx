@@ -1,40 +1,19 @@
-import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
+import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
-import axios from "axios";
-import { BASE_URL } from "../constants";
-import Order from "../components/Order";
 
-const useFetchProducts = (isDeliveringAgent) => {
+const useFetchProducts = () => {
   const { data, isLoading, isError } = useGetProductsQuery();
-  const [orders, setOrders] = useState([]);
-  const [err, setErr] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (isDeliveringAgent) {
-          setLoading(true);
-          const allOrders = await axios.get(`${BASE_URL}api/delivery/order-delivery`);
-          setOrders(allOrders.data.Orders);
-          setLoading(false);
-        }
-      } catch (error) {
-        setErr(error);
-      }
-    };
+  return { products: data, loading: isLoading, error: isError };
+};
 
-    fetchData();
-  }, [isDeliveringAgent]);
+const useFetchOrders = () => {
+  const { data, isLoading, isError } = useGetDeliveryQuery();
 
-  return {
-    products: isDeliveringAgent ? orders : data,
-    loading: isDeliveringAgent ? loading : isLoading,
-    error: isDeliveringAgent ? err : isError,
-  };
+  return { products: data, loading: isLoading, error: isError };
 };
 
 const HomeScreen = () => {
@@ -44,7 +23,10 @@ const HomeScreen = () => {
     isDeliveringAgent = JSON.parse(localStorage.getItem("userInfo")).deliveryAgent;
   }
 
-  const { products, loading, error } = useFetchProducts(isDeliveringAgent);
+  const fetchProduct = useFetchProducts();
+  const fetchOrders = useFetchOrders();
+
+  const { products, loading, error } = isDeliveringAgent ? fetchOrders : fetchProduct;
 
   return (
     <>
@@ -66,9 +48,9 @@ const HomeScreen = () => {
             <label>Hey Agent!! Your Product needs to be Delivered</label>
           </p>
           <Row>
-            {products.map((product) => (
+            {products.Orders.map((product) => (
               <Col sm={12} md={6} lg={4} xl={3} key={product.id}>
-                <Order product={product} />
+                <Product product={product} isProduct={false} />
               </Col>
             ))}
           </Row>
@@ -79,7 +61,7 @@ const HomeScreen = () => {
           <Row>
             {products.map((product) => (
               <Col sm={12} md={6} lg={4} xl={3} key={product.id}>
-                <Product product={product} />
+                <Product product={product} isProduct={true} />
               </Col>
             ))}
           </Row>
