@@ -71,12 +71,13 @@ const Product = ({ product, isProduct }) => {
             </>
           ) : (
             <>
-              <p>
-                {product.orderItems.length > 1 && (
-                  <span>{`+${product.orderItems.length - 1} products`}</span>
-                )}
-              </p>
-              <p>{`is Paid? : ${product.isPaid}`} || {`Is Delivered? : ${product.isDelivered}`}</p>
+              {product.orderItems.length > 1 ? (
+                <span>{`+${product.orderItems.length - 1} products`}</span>
+              ) : (
+                <span>1 Product Only</span>
+              )}
+              <p>{`Is Delivered? : ${product.isDelivered}`}</p>
+              <p>{`is Paid? : ${product.isPaid}`}</p>
             </>
           )}
         </Card.Text>
