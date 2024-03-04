@@ -3,6 +3,7 @@ import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
 import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
+import { useSelector } from "react-redux";
 
 const useFetchProducts = () => {
   const { data, isLoading, isError } = useGetProductsQuery();
@@ -17,6 +18,7 @@ const useFetchOrders = () => {
 };
 
 const HomeScreen = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   let isDeliveringAgent = null;
 
   if (localStorage.getItem("userInfo")) {
@@ -45,7 +47,7 @@ const HomeScreen = () => {
       ) : isDeliveringAgent ? (
         <>
           <p className="h3 lh-sm">
-            <label>Hey Agent!! Your Product needs to be Delivered</label>
+            <label>{`Hey ${userInfo.name}!! Your Product needs to be Delivered`}</label>
           </p>
           <Row>
             {products.Orders.map((product) => (
