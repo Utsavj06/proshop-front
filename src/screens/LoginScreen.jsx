@@ -24,8 +24,8 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
-  const [resetPassword, { resetPasswordLoading }] = useResetPasswordMutation();
+  const [login, { isLoading: loaginLoad }] = useLoginMutation();
+  const [resetPassword, { isLoading: resetLoad }] = useResetPasswordMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -119,7 +119,7 @@ const LoginScreen = () => {
           <p className="mb-1" onClick={frgtMod}>
             forgot password ?
           </p>
-          <Button disabled={isLoading} type="submit" variant="primary">
+          <Button disabled={loaginLoad} type="submit" variant="primary">
             Sign In
           </Button>
           &nbsp;&nbsp;
@@ -130,7 +130,7 @@ const LoginScreen = () => {
           >
             Login with Google
           </Button>
-          {isLoading && <Loader />}
+          {loaginLoad && <Loader />}
         </Form>
 
         <Row className="py-3">
