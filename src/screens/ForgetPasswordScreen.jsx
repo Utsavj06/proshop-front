@@ -35,6 +35,7 @@ const ForgetPasswordScreen = () => {
               type="password"
               placeholder="Enter password"
               value={password}
+              autocomplete="new-password"
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
@@ -44,6 +45,7 @@ const ForgetPasswordScreen = () => {
               type="password"
               placeholder="Confirm password"
               value={cPass}
+              autocomplete="new-password"
               onChange={(e) => setCPass(e.target.value)}
             ></Form.Control>
           </Form.Group>
