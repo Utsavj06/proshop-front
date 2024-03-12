@@ -116,9 +116,9 @@ const LoginScreen = () => {
           />
           &nbsp;&nbsp;&nbsp;<label>Delivering Agent?</label>
           <br />
-          <p className="mb-1" onClick={frgtMod}>
+          <u><p className="mb-1" style={{cursor:'pointer'}} onClick={frgtMod}>
             forgot password ?
-          </p>
+          </p></u>
           <Button disabled={loaginLoad} type="submit" variant="primary">
             Sign In
           </Button>
