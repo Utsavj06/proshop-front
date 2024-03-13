@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Col, Form, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import FormContainer from '../components/FormContainer';
+import React, { useState } from "react";
+import { Button, Form, } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+import FormContainer from "../components/FormContainer";
+import { useUpdatePassMutation } from "../slices/usersApiSlice";
 
 const ForgetPasswordScreen = () => {
   const [password, setPassword] = useState("");
@@ -10,18 +10,28 @@ const ForgetPasswordScreen = () => {
 
   const navigate = useNavigate();
 
-  const { userInfo } = useSelector((state) => state.auth);
+  const [updatePass] = useUpdatePassMutation();
 
   const { search } = useLocation();
-  console.log(search)
   const sp = new URLSearchParams(search);
-  console.log(sp)
   const email = sp.get("email") || "/";
   const token = sp.get("token");
-  console.log(email, token)
 
   const submitHandler = async (e) => {
-
+    e.preventDefault();
+    try {
+      const result = await updatePass({
+        email: email,
+        newPass: password,
+        token,
+      });
+      alert(result.error.data);
+      if (result.error.data !== `Token doesn't match`) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
   };
 
   return (
@@ -49,14 +59,17 @@ const ForgetPasswordScreen = () => {
               onChange={(e) => setCPass(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <br />
-          <Button type="submit" variant="primary">
+          {/* <br /> */}
+          {password !== cPass && (
+            <span className="mb-3 text-danger">Password doesn't match</span>
+          )}
+          <Button type="submit" variant="primary" disabled={password !== cPass}>
             Reset the Password
           </Button>
         </Form>
       </FormContainer>
     </>
   );
-}
+};
 
-export default ForgetPasswordScreen
+export default ForgetPasswordScreen;

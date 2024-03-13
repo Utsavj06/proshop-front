@@ -167,6 +167,7 @@ const LoginScreen = () => {
           >
             Reset Password
           </Button>
+          {resetLoad  && <Loader />}
         </div>
       )}
     </>
