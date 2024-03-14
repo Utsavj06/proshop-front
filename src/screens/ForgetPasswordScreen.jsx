@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import FormContainer from "../components/FormContainer";
 import { useUpdatePassMutation } from "../slices/usersApiSlice";
@@ -26,7 +26,7 @@ const ForgetPasswordScreen = () => {
         token,
       });
       alert(result.error.data);
-      if (result.error.data !== `Token doesn't match`) {
+      if (result.error.originalStatus !== 401) {
         navigate("/login");
       }
     } catch (err) {
@@ -59,12 +59,17 @@ const ForgetPasswordScreen = () => {
               onChange={(e) => setCPass(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          {/* <br /> */}
           {password !== cPass && (
-            <span className="mb-3 text-danger">Password doesn't match</span>
+            <span className="text-danger">Password doesn't match</span>
           )}
-          <Button type="submit" variant="primary" disabled={password !== cPass}>
-            Reset the Password
+          <br />
+          <Button
+            type="submit"
+            variant="primary"
+            className="mt-2"
+            disabled={!password || password !== cPass}
+          >
+            Save
           </Button>
         </Form>
       </FormContainer>

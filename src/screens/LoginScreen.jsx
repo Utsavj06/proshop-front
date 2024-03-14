@@ -78,7 +78,7 @@ const LoginScreen = () => {
 
   const handleFrgtPass = async () => {
     try {
-      await resetPassword({frgtEml}).unwrap();
+      await resetPassword({ frgtEml }).unwrap();
       setFrgtEml("");
       setIsFrgt(false);
     } catch (err) {
@@ -115,10 +115,16 @@ const LoginScreen = () => {
             onClick={() => setIsDeliveryingAgent(!isDeliveryingAgent)}
           />
           &nbsp;&nbsp;&nbsp;<label>Delivering Agent?</label>
+          <a
+            href="#"
+            className="mb-1 float-end"
+            style={{ cursor: "pointer" }}
+            onClick={frgtMod}
+          >
+            forgot password?
+          </a>
           <br />
-          <u><p className="mb-1" style={{cursor:'pointer'}} onClick={frgtMod}>
-            forgot password ?
-          </p></u>
+          <div className="mt-2" />
           <Button disabled={loaginLoad} type="submit" variant="primary">
             Sign In
           </Button>
@@ -135,7 +141,7 @@ const LoginScreen = () => {
 
         <Row className="py-3">
           <Col>
-            New Customer?
+            New Customer?&nbsp;
             <Link
               to={redirect ? `/register?redirect=${redirect}` : "/register"}
             >
@@ -149,7 +155,16 @@ const LoginScreen = () => {
           className="position-absolute col-sm-6 p-4 bg-primary start-0 end-0"
           style={{ margin: "0 auto", top: "35%" }}
         >
-          <h4 className="text-danger">Your Email Please</h4>
+          <h4 className="text-danger mb-1 d-flex justify-content-between">
+            <span>Your Email Please</span>
+            <span
+              className="fw-normal position-absolute"
+              style={{ color: "#bfa676", left: "95%", top: '5px' }}
+              onClick={() => setIsFrgt(false)}
+            >
+              x
+            </span>
+          </h4>
           <div class="input-group mb-3">
             <input
               type="text"
@@ -164,10 +179,11 @@ const LoginScreen = () => {
             className="d-block btn-sm"
             variant="success"
             onClick={handleFrgtPass}
+            disabled={!frgtEml}
           >
             Reset Password
           </Button>
-          {resetLoad  && <Loader />}
+          {resetLoad && <Loader />}
         </div>
       )}
     </>
