@@ -60,9 +60,8 @@ const ForgetPasswordScreen = () => {
             ></Form.Control>
           </Form.Group>
           {password !== cPass && (
-            <span className="text-danger">Password doesn't match</span>
+            <span className="text-danger d-block">Password doesn't match</span>
           )}
-          <br />
           <Button
             type="submit"
             variant="primary"
