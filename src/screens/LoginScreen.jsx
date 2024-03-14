@@ -159,7 +159,7 @@ const LoginScreen = () => {
             <span>Your Email Please</span>
             <span
               className="fw-normal position-absolute"
-              style={{ color: "#bfa676", left: "95%", top: '5px' }}
+              style={{ color: "#bfa676", left: "95%", top: '5px', cursor: 'pointer' }}
               onClick={() => setIsFrgt(false)}
             >
               x
