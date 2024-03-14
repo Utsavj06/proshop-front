@@ -37,7 +37,7 @@ const ForgetPasswordScreen = () => {
   return (
     <>
       <FormContainer>
-        <h1>Really want to reset your password</h1>
+        <h1>Reset your password</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="my-2" controlId="email">
             <Form.Label>Enter Password</Form.Label>
