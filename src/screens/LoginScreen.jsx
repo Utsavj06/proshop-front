@@ -78,11 +78,15 @@ const LoginScreen = () => {
 
   const handleFrgtPass = async () => {
     try {
-      await resetPassword({ frgtEml }).unwrap();
+      const frgRes = await resetPassword({ frgtEml }).unwrap();
+      console.log(frgRes.status, typeof frgRes.status);
       setFrgtEml("");
       setIsFrgt(false);
+      console.log(frgRes);
     } catch (err) {
-      console.log(err);
+      if (err.status == 501) {
+        alert(err.data.message);
+      }
     }
   };
 
@@ -159,7 +163,12 @@ const LoginScreen = () => {
             <span>Your Email Please</span>
             <span
               className="fw-normal position-absolute"
-              style={{ color: "#bfa676", left: "95%", top: '5px', cursor: 'pointer' }}
+              style={{
+                color: "#bfa676",
+                left: "95%",
+                top: "5px",
+                cursor: "pointer",
+              }}
               onClick={() => setIsFrgt(false)}
             >
               x
