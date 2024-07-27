@@ -27,6 +27,7 @@ import AddProduct from "./screens/AddProduct";
 import Profile from "./screens/Profile";
 import PaymentScreens from "./screens/PaymentScreens";
 import ForgetPasswordScreen from "./screens/ForgetPasswordScreen";
+import NotFound from "./screens/NotFound";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/pay-card" element={<PaymentScreens />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
