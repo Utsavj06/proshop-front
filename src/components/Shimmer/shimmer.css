@@ -6,16 +6,16 @@
 }
 
 .shimmer-effect{
-    width: 10px;
+    width: 1px;
     height: 140%;
-    background-color: #f8f0f0;
+    background-color: #c4c2c2;
     animation-name: effect;
     animation-duration: 1s;
     position: absolute;
     animation-iteration-count: infinite; 
     top: -15px;
     transform: rotate(-20deg); /* Correct rotation syntax */
-    box-shadow: 5px 5px 15px 15px rgba(119, 117, 117, 0.4);
+    box-shadow: 5px 5px 25px 25px rgba(119, 117, 117, 0.4);
 }
 
 @keyframes effect {
