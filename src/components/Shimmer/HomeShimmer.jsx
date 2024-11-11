@@ -8,44 +8,26 @@ const HomeShimmer = () => {
     <Card className="my-3 p-3 rounded">
         <Link>
           <div
-            className='shimmer-box'
-            style={{
-              height: "200px",
-            }}
-          >
-            <div className='shimmer-effect' />
-          </div>
+            className='shimmer-effect'
+            id='product-image'
+          />
         </Link>
         <Card.Body>
           <Link>
             <div
-              className='shimmer-box'
-              style={{
-                height: "2.5em",
-                marginBottom: "10px",
-              }}
-              >
-              <div className='shimmer-effect' />
-            </div>
+              className='shimmer-effect'
+              id='product-name'
+             />
           </Link>
 
           <div
-            className='shimmer-box'
-            style={{
-              height: "20px",
-            }}
-          >
-            <div className='shimmer-effect' />
-          </div>
+            className='shimmer-effect'
+            id='product-rating'
+          />
           <div
-            className='shimmer-box'
-            style={{
-              height: "30px",
-              marginTop: "10px",
-            }}
-          >
-            <div className='shimmer-effect' />
-          </div>
+            className='shimmer-effect'
+            id='product-price'
+          />
         </Card.Body>
       </Card>
   )
