@@ -113,12 +113,12 @@ const LoginScreen = () => {
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <input
+          {/* <input
             type="checkbox"
             value={isDeliveryingAgent}
             onClick={() => setIsDeliveryingAgent(!isDeliveryingAgent)}
           />
-         {/* &nbsp;&nbsp;&nbsp;<label>Delivering Agent?</label>
+           &nbsp;&nbsp;&nbsp;<label>Delivering Agent?</label>
           <a
             href="#"
             className="mb-1 float-end"
