@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
@@ -29,6 +30,10 @@ const HomeScreen = () => {
   const fetchOrders = useFetchOrders();
 
   const { products, loading, error } = isDeliveringAgent ? fetchOrders : fetchProduct;
+
+  useEffect(()=>{
+    window.scrollTo(0, 0); 
+  },[])
 
   return (
     <>
