@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Card, Col, Image, ListGroup, Row, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
@@ -16,6 +16,10 @@ const ProductScreen = () => {
   const [markDel, setMarkDel] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    window.scrollTo(0, 0); 
+  },[])
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
