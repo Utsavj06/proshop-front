@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApi";
 import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
 import { useSelector } from "react-redux";
+import slideTop from '../assets/slide-top.jpg'
+import slide1 from '../assets/slide-1.jpg'
+import slide2 from '../assets/Slide-2.jpg'
+import slide3 from '../assets/slide-3.jpg'
+import slide4 from '../assets/slide-4.jpeg'
+import '../index.css'
 
 const useFetchProducts = () => {
   const { data, isLoading, isError } = useGetProductsQuery();
@@ -18,8 +24,11 @@ const useFetchOrders = () => {
   return { products: data, loading: isLoading, error: isError };
 };
 
+const swiperImag = [slideTop, slide1, slide2, slide3, slide4]
+
 const HomeScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
+  const [imgIndex, setImgIndex] = useState(0)
   let isDeliveringAgent = null;
 
   if (localStorage.getItem("userInfo")) {
@@ -35,8 +44,41 @@ const HomeScreen = () => {
     window.scrollTo(0, 0); 
   },[])
 
+  const handleCarouselNavigation = (e) => {
+    const pageWidth = window.innerWidth;
+
+    if(e.clientX < pageWidth/2){
+      if(imgIndex == 0){
+        setImgIndex(swiperImag.length-1)
+        return
+      }
+      setImgIndex(prev => prev-1)
+    } else {
+      if(imgIndex == swiperImag.length-1){
+        setImgIndex(0)
+        return
+      }
+      setImgIndex(prev => prev+1)
+    }
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if(imgIndex == swiperImag.length-1){
+        setImgIndex(0)
+        return
+      }
+      setImgIndex(prevIndex => prevIndex + 1); 
+    }, 2000);
+
+    return () => clearTimeout(timer);  
+  }, [imgIndex]); 
+
   return (
     <>
+    <div className="carousel" onClick={handleCarouselNavigation}>
+      <img src={swiperImag[imgIndex]} alt="Girl in a jacket" style={{width: '100%', height: '200px'}}/>
+    </div>
       {loading ? (
         <h2>
           <Row>
