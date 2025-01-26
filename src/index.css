@@ -15,7 +15,20 @@ code {
 
 .carousel {
   position: relative;
-  background-color: blue;
+  background-color: #fff;
+}
+
+.carousel-dot{
+  position: absolute;
+  bottom: 0px;
+  left: 42%;
+  z-index: 9;
+  color: #7d1313;
+}
+
+.carousel-dot span{
+  cursor: pointer;
+  font-size: 50px;
 }
 
 .carousel::before {
@@ -27,7 +40,7 @@ code {
   font-size: 24px;
   z-index: 9;
   background-color: #fff;
-  padding: 2px 5px;
+  padding: 2px 10px;
   border-radius: 50%;
   font-weight: 800;
   border-color: rgb(190, 138, 102);
@@ -44,7 +57,7 @@ code {
   font-size: 24px;
   z-index: 9;
   background-color: #fff;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 50%;
   font-weight: 800;
   border-color: rgb(190, 138, 102);
