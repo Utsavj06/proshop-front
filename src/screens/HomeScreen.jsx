@@ -5,11 +5,12 @@ import { useGetProductsQuery } from "../slices/productsApi";
 import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
 import { useSelector } from "react-redux";
-import slideTop from '../assets/slide-top.jpg'
-import slide1 from '../assets/slide-1.jpg'
-import slide2 from '../assets/Slide-2.jpg'
-import slide3 from '../assets/slide-3.jpg'
-import slide4 from '../assets/slide-4.jpeg'
+import slide1 from '../assets/slick-1.png'
+import slide2 from '../assets/slick-2.png'
+import slide3 from '../assets/slick-3.png'
+import slide4 from '../assets/slick-4.png'
+import slide5 from '../assets/slick-5.png'
+import slide6 from '../assets/slick-6.png'
 import '../index.css'
 
 const useFetchProducts = () => {
@@ -24,7 +25,7 @@ const useFetchOrders = () => {
   return { products: data, loading: isLoading, error: isError };
 };
 
-const swiperImag = [slideTop, slide1, slide2, slide3, slide4]
+const swiperImag = [slide1, slide2, slide3, slide4, slide5, slide6]
 
 const HomeScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -62,6 +63,10 @@ const HomeScreen = () => {
     }
   }
 
+  const handleDotClick = (element) => {
+    setImgIndex(element+1)
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if(imgIndex == swiperImag.length-1){
@@ -69,16 +74,24 @@ const HomeScreen = () => {
         return
       }
       setImgIndex(prevIndex => prevIndex + 1); 
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);  
   }, [imgIndex]); 
 
   return (
     <>
-    <div className="carousel" onClick={handleCarouselNavigation}>
-      <img src={swiperImag[imgIndex]} alt="Girl in a jacket" style={{width: '100%', height: '200px'}}/>
-    </div>
+    {!loading && <div className="carousel" onClick={handleCarouselNavigation}>
+      <div className="carousel-dot">
+      {swiperImag.map((_, index) => {
+        return <span key={index} 
+                    onClick={() => handleDotClick(index)}>
+                    .
+                    </span>
+      })}
+      </div>
+      <img src={swiperImag[imgIndex]} alt="carousel" style={{width: '100%', height: '200px'}}/>
+    </div>}
       {loading ? (
         <h2>
           <Row>
@@ -106,7 +119,7 @@ const HomeScreen = () => {
         </>
       ) : (
         <>
-          <h1>Latest Products</h1>
+          <h1 className="mt-3 mb-0">Latest Products</h1>
           <Row>
             {products.map((product) => (
               <Col sm={12} md={6} lg={4} xl={3} key={product.id}>
