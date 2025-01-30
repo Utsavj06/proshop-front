@@ -20,15 +20,28 @@ code {
 
 .carousel-dot{
   position: absolute;
-  bottom: 0px;
+  bottom: -35px;
   left: 42%;
   z-index: 9;
-  color: #7d1313;
+  color: #1b5513;
+  display: flex;
+  align-items: center;
 }
 
 .carousel-dot span{
   cursor: pointer;
-  font-size: 50px;
+  font-size: 75px;
+  display: flex;
+  align-items: center;
+}
+
+.carousel-select{
+  font-size: 100px !important;
+  color: #0d2872;
+  display: flex !important;
+  align-items: center !important;
+  position: relative;
+  bottom: 9px;
 }
 
 .carousel::before {
@@ -64,3 +77,4 @@ code {
   opacity: 0.8;
   border: 2px solid black;
 }
+
