@@ -5,12 +5,12 @@ import { useGetProductsQuery } from "../slices/productsApi";
 import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
 import { useSelector } from "react-redux";
-import slide1 from '../assets/slick-1.png'
-import slide2 from '../assets/slick-2.png'
-import slide3 from '../assets/slick-3.png'
-import slide4 from '../assets/slick-4.png'
-import slide5 from '../assets/slick-5.png'
-import slide6 from '../assets/slick-6.png'
+import slide1 from '../assets/slide-1.png'
+import slide2 from '../assets/slide-2.png'
+import slide3 from '../assets/slide-3.jpg'
+import slide4 from '../assets/slide-4.jpg'
+import slide5 from '../assets/slide-5.jpg'
+import Carousel from '../components/Carousel'
 import '../index.css'
 
 const useFetchProducts = () => {
@@ -25,11 +25,10 @@ const useFetchOrders = () => {
   return { products: data, loading: isLoading, error: isError };
 };
 
-const swiperImag = [slide1, slide2, slide3, slide4, slide5, slide6]
+const swiperImag = [slide1, slide2, slide3, slide4, slide5]
 
 const HomeScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const [imgIndex, setImgIndex] = useState(0)
   let isDeliveringAgent = null;
 
   if (localStorage.getItem("userInfo")) {
@@ -45,53 +44,9 @@ const HomeScreen = () => {
     window.scrollTo(0, 0); 
   },[])
 
-  const handleCarouselNavigation = (e) => {
-    const pageWidth = window.innerWidth;
-
-    if(e.clientX < pageWidth/2){
-      if(imgIndex == 0){
-        setImgIndex(swiperImag.length-1)
-        return
-      }
-      setImgIndex(prev => prev-1)
-    } else {
-      if(imgIndex == swiperImag.length-1){
-        setImgIndex(0)
-        return
-      }
-      setImgIndex(prev => prev+1)
-    }
-  }
-
-  const handleDotClick = (element) => {
-    setImgIndex(element+1)
-  }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if(imgIndex == swiperImag.length-1){
-        setImgIndex(0)
-        return
-      }
-      setImgIndex(prevIndex => prevIndex + 1); 
-    }, 3000);
-
-    return () => clearTimeout(timer);  
-  }, [imgIndex]); 
-
   return (
     <>
-    {!loading && <div className="carousel" onClick={handleCarouselNavigation}>
-      <div className="carousel-dot">
-      {swiperImag.map((_, index) => {
-        return <span key={index} 
-                    onClick={() => handleDotClick(index)}>
-                    .
-                    </span>
-      })}
-      </div>
-      <img src={swiperImag[imgIndex]} alt="carousel" style={{width: '100%', height: '200px'}}/>
-    </div>}
+    {!loading && <Carousel swiperImag={swiperImag} />}
       {loading ? (
         <h2>
           <Row>
