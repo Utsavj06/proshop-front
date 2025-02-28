@@ -46,7 +46,7 @@ const HomeScreen = () => {
 
   return (
     <>
-    //{!loading && <Carousel swiperImag={swiperImag} />}
+    {/*!loading && <Carousel swiperImag={swiperImag} />*/}
       {loading ? (
         <h2>
           <Row>
