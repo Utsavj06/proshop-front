@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
-import { useGetProductsQuery } from "../slices/productsApi";
+// import { useGetProductsQuery } from "../slices/productsApi";    // Commenting to disabled Previous Implement Rtk Query Call
 import { useGetDeliveryQuery } from "../slices/deliveryApiSlice";
 import Message from "../components/Message";
 import { useSelector } from "react-redux";
@@ -12,16 +12,21 @@ import slide4 from '../assets/slide-4.jpg'
 import slide5 from '../assets/slide-5.jpg'
 import Carousel from '../components/Carousel'
 import '../index.css'
+import { useQuery } from "@apollo/client";
+import { GET_ALL_PRODUCTS } from "../components/Graphql/Queries";
 
 const useFetchProducts = () => {
-  const { data, isLoading, isError } = useGetProductsQuery();
+  const {data, loading, error} = useQuery(GET_ALL_PRODUCTS)
+  return { products: data?.productQuery, loading, error };
 
-  return { products: data, loading: isLoading, error: isError };
+  // Commenting to disabled Previous Implement Rtk Query Call
+  
+  // const { data, isLoading, isError } = useGetProductsQuery()
+  // return { products: data, loading: isLoading, error: isError };
 };
 
 const useFetchOrders = () => {
   const { data, isLoading, isError } = useGetDeliveryQuery();
-
   return { products: data, loading: isLoading, error: isError };
 };
 

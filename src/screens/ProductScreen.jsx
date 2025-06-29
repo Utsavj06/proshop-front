@@ -2,21 +2,32 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Card, Col, Image, ListGroup, Row, Form } from "react-bootstrap";
 import Rating from "../components/Rating";
-import { useGetProductDetailsQuery } from "../slices/productsApi";
+// import { useGetProductDetailsQuery } from "../slices/productsApi";   // Commenting to disabled Previous Implement Rtk Query Call
 import Message from "../components/Message";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/cartSlice";
 import ProductShimmer from "../components/Shimmer/ProductShimmer";
+import { GET_SINGLE_PRODUCT } from "../components/Graphql/Queries";
+import { useQuery } from "@apollo/client";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-  const { data: product, isLoading, isError } = useGetProductDetailsQuery(productId);
+
+// Commenting to disabled Previous Implement Rtk Query Call
+
+  // const { data: product, isLoading, isError } = useGetProductDetailsQuery(productId);
+  
+  const { data, loading: isLoading, error: isError } = useQuery(GET_SINGLE_PRODUCT, {
+    variables: { id: productId }, 
+  });
+  const product = data?.productById;
+  
   const [qty, setQty] = useState(1);
   const [isDelivering] = useState(false);
   const [markDel, setMarkDel] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
   useEffect(()=>{
     window.scrollTo(0, 0); 
   },[])

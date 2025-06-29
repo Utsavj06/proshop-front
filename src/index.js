@@ -28,6 +28,7 @@ import Profile from "./screens/Profile";
 import PaymentScreens from "./screens/PaymentScreens";
 import ForgetPasswordScreen from "./screens/ForgetPasswordScreen";
 import NotFound from "./screens/NotFound";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,13 +52,18 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+
+const client = new ApolloClient({ uri: 'http://localhost:5000/graphql', cache: new InMemoryCache() });
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <ApolloProvider client={client}>
     <CookiesProvider>
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>
     </CookiesProvider>
+    </ApolloProvider>
   </React.StrictMode>
 );
