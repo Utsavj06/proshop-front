@@ -29,6 +29,7 @@ import PaymentScreens from "./screens/PaymentScreens";
 import ForgetPasswordScreen from "./screens/ForgetPasswordScreen";
 import NotFound from "./screens/NotFound";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { GRAPHQL_BASE_URL } from "./constants";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,7 +54,7 @@ const router = createBrowserRouter(
   )
 );
 
-const client = new ApolloClient({ uri: process.env.GRAPHQL_BASE_URL , cache: new InMemoryCache() });
+const client = new ApolloClient({ uri: GRAPHQL_BASE_URL , cache: new InMemoryCache() });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
