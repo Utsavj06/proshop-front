@@ -52,7 +52,7 @@ const ProductScreen = () => {
         <Message variant="danger">{isError?.data?.message || isError.error}</Message>
       ) : (
         <Row>
-          <Col md={5} className="w-25 h-50">
+          <Col md={5} sm={12} lg={3} className="h-50">
             <Image src={product.image} alt={product.name} fluid />
           </Col>
           {isDelivering ? (
