@@ -25,7 +25,7 @@
 
 .shimmer-effect::before{
     content: '';
-    width: 0.1px;
+    width: 0.01px;
     height: 140%;
     background-color: #c4c2c2;
     animation-name: effect;
