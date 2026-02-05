@@ -4,8 +4,8 @@ Few Functionalities of the Project
 
 i. Admin can create Product to List Out.
 ii. Users can
-        a) Place an Order
-        b) Reset the Password if forget
+        Place an Order
+        and Reset the Password if forget
 iii. Delivery Agent can change the Status of Delivery.
 
 Technologies Used: Javascript, React Js, React Bootstrap, Redux Toolkit, Stripe Payment
