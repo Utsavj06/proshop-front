@@ -39,7 +39,7 @@ const AddProduct = () => {
 
     try {
       // Send a POST request using axios
-      const res = await axios.post(`${BASE_URL}/api/addProduct`,formData);
+      const res = await axios.post(`${BASE_URL}api/addProduct`,formData);
 
       alert(res.data)
       // Reset form values
