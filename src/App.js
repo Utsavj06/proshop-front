@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { Outlet } from "react-router-dom";
+import Chatbot from  "./components/Chatbot/Chatbot"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         </Container>
       </main>
       <Footer />
+      <Chatbot />
       <ToastContainer />
     </>
   );
