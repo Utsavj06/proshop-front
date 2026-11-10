@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://127.0.0.1:5000",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "@reduxjs/toolkit": "^1.9.7",
